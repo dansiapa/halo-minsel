@@ -15,7 +15,6 @@ class Laporan extends BaseController
 	
 	public function index()
 	{
-		// $laporan = $this->laporanModel->findAll();
 		$currentPage = $this->request->getVar('page_laporan_hm') ? $this->request->getVar('page_laporan_hm') : 1;
 
 		$keyword = $this->request->getVar('cari');
@@ -26,10 +25,9 @@ class Laporan extends BaseController
 		}
 
 		$data = [
-			'laporan'			 	=> $lprn->paginate(1, 'laporan_hm'),
+			'laporanModel'	=> $lprn->join('user', 'user.id_user = laporan_hm.id_user')->paginate(1, 'laporan_hm'),
 			'pager' 				=> $this->laporanModel->pager,
 			'currentPage'		=> $currentPage, 
-			'laporanModel'	=> $this->laporanModel->getData(),			
 		];
 		
 		return view('halominsel/laporan', $data);

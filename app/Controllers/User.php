@@ -15,7 +15,6 @@ class User extends BaseController
 
 	public function index()
 	{
-		// $user = $this->userModel->findAll();
 		$currentPage = $this->request->getVar('page_user') ? $this->request->getVar('page_user') : 1;
 
 		$keyword = $this->request->getVar('keyword');

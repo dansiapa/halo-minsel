@@ -19,7 +19,7 @@
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table table-bordered" cellspacing="0">
+				<table class="table table-bordered" cellspacing="0" id="dataLaporan">
 					<thead>
 						<tr>
 							<th>No</th>
@@ -52,9 +52,24 @@
 						<?php endforeach; ?>
 					</tbody>
 				</table>
-				<?= $pager->links('laporan_hm', 'laporan_pagination'); ?>
+				<?= $pager->links('laporan_hm', 'laporan_pagination') ?>
 			</div>
 		</div>
 	</div>
+
+	<script>
+	$(document).ready(function(){
+    $("#keyword").keypress(function(event){
+        if(event.keyCode == 13){ // 13 adalah kode enter
+            filter();
+        }
+    });
+    var filter = function(){
+        var category = $("#category").val();
+        var keyword = $("#keyword").val();
+        window.location.replace("/product?category="+category+"&keyword="+keyword);
+    }
+	});
+	</script>
 
 <?= $this->endSection(); ?>

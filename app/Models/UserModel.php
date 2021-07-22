@@ -12,13 +12,12 @@ class UserModel extends Model
 
   public function search($keyword)
   {
-    // $builder = $this->table('user');
-
-    // $builder->like('name_user', $keyword);
-    // // $builder->like('email_user', $keyword);
-
-    // return $builder;
-
-    return $this->table('user')->like('nik_user', $keyword)->orLike('name_user', $keyword)->orLike('email_user', $keyword);
+    $builder = $this->table('user');
+    $builder->like('nik_user', $keyword);
+    $builder->orLike('name_user', $keyword);
+    $builder->orLike('email_user', $keyword);
+    $builder->orLike('nomor_user', $keyword);
+    $builder->orLike('address_user', $keyword);
+    return $builder;
   }
 }
